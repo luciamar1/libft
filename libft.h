@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 19:51:03 by lucia-ma          #+#    #+#             */
-/*   Updated: 2022/12/21 03:23:06 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/02/24 14:57:29 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
 # endif
+
 typedef struct s_list
 {
 	void			*content;
