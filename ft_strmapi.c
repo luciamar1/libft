@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucia-ma <lucia-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 02:23:54 by lucia-ma          #+#    #+#             */
-/*   Updated: 2022/09/18 20:59:00 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/02/27 11:49:11 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-char	f(unsigned int i, char a)
-{
-	i = 0;
-	a = 'a';
-	return ('k');
-}
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
