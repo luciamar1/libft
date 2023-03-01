@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 19:51:03 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/02/24 14:57:29 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:58:27 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+void		ft_freecharmatrix(char **matrix);
+void		ft_freeintmatrix(int **matrix, int sec_dimension);
 int			ft_atoi(const char *str);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
