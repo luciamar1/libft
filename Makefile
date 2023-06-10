@@ -1,53 +1,45 @@
+NAME		=	so_long
+CC			=	gcc
+FLAGS		=	-Wall -Wextra -Werror
+MLX			=	mlx/Makefile.gen
+LFT			=	libft/libft.a
+INC			=	-I ./inc -I ./libft -I ./mlx
+LIB			=	-L ./libft -lft -L ./mlx -lmlx -lXext -lX11 -lm -lbsd
+OBJ			=	$(patsubst src%, obj%, $(SRC:.c=.o))
+SRC			=	main.c checker.c
+				
 
-NAME = so_long
+all:		$(MLX) $(LFT) obj $(NAME)
 
-SRCS =							\
-		srcs/create_imgs.c		\
-		srcs/draw.c				\
-		srcs/init.c				\
-		srcs/input.c			\
-		srcs/main.c				\
-		srcs/map_selector.c		\
-		srcs/map_validator.c	\
-		srcs/movement.c			\
-		srcs/read_map.c			\
-		srcs/store_map.c		\
-		srcs/utils.c			\
-		srcs/validate_path.c	\
+$(NAME):	$(OBJ)
+			$(CC) $(FLAGS) -fsanitize=address -o $@ $^ $(LIB)
 
-OBJS = $(SRCS:.c=.o)
+$(MLX):
+			@echo " [ .. ] | Compiling minilibx.."
+			@make -s -C mlx
+			@echo " [ OK ] | Minilibx ready!"
 
-LIB = libft/libft.a
+$(LFT):		
+			@echo " [ .. ] | Compiling libft.."
+			@make -s -C libft
+			@echo " [ OK ] | Libft ready!"
 
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I inc -I libft
+obj:
+			@mkdir -p obj
 
-FLAGS_MLX = -lmlx -framework OpenGL -framework AppKit 
-
-$(NAME): $(OBJS)
-	@make -C libft
-	$(CC) $(CFLAGS) $(FLAGS_MLX) $(OBJS) $(LIB) -o $(NAME)
-	@echo "🏂 so_long Done 🏂"
-
-all: $(NAME)
+obj/%.o:	src/%.c
+			$(CC) $(FLAGS) $(INC) -o $@ -c $<
 
 clean:
-	make clean -C libft
-	@rm -rf $(OBJS)
+			@make -s $@ -C libft
+			@rm -rf $(OBJ) obj
+			@echo "object files removed."
 
-fclean: clean
-	make fclean -C libft
-	@rm -f $(NAME)
+fclean:		clean
+			@make -s $@ -C libft
+			@rm -rf $(NAME)
+			@echo "binary file removed."
 
-re: fclean all
+re:			fclean all
 
-norma:
-	@echo 6966205b5b2024286e6f726d696e65747465207c206772657020274572726f7227207c207763202d6c29202d65712030205d5d3b207468656e206e6f726d696e657474653b20656c736520286e6f726d696e65747465207c206772657020274572726f7227293b206669 | xxd -r -p | zsh
-
-test:
-	bash ./map_tester.sh
-	
-leaks:
-	@echo 7768696c6520747275653b646f206c65616b7320736f5f6c6f6e673b20736c65657020323b20646f6e653b | xxd -r -p | zsh
-	
-.PHONY: all clean fclean re norma test leaks
+.PHONY:		all clean fclean re
