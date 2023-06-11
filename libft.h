@@ -28,6 +28,7 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int			ft_str_rev_n_cmp(const char *s1, const char *s2, size_t n);
 void		ft_freecharmatrix(char **matrix);
 void		ft_freeintmatrix(int **matrix, int sec_dimension);
 int			ft_atoi(const char *str);
