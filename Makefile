@@ -12,7 +12,7 @@ SRC			=	main.c checker.c
 all:		$(MLX) $(LFT) obj $(NAME)
 
 $(NAME):	$(OBJ)
-			$(CC) $(FLAGS) -fsanitize=address -o $@ $^ $(LIB)
+			$(CC) $(FLAGS) -o $@ $^ $(LIB)
 
 $(MLX):
 			@echo " [ .. ] | Compiling minilibx.."

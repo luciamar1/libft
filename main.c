@@ -6,25 +6,34 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/12 00:38:49 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/06/12 21:01:08 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+/* void	valgrind(void)
+ {
+ 	system("valgrind -s --leak-check=full ./so_long");
+
+ }*/
 int main(int argc, char **argv)
 {
 
 	char	**map;
     //t_minilib   program;
-
 	map = check_file(argc, argv);
 	
+	//valgrind();
     //program.mlx_pointer = mlx_init();
     //program.window = mlx_new_window(program.mlx_pointer, 1980, 1080, "Hellow minilib =)");
     
     //mlx_loop(program.mlx_pointer);
-    
+
+	if(map == NULL)
+		return(1);
+	
+	ft_freecharmatrix(map);
     return(0);
 }
 /*
