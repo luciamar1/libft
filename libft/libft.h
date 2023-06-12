@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 19:51:03 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/11 00:54:45 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/06/12 01:20:40 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ size_t		ft_strlen_gnl(const char *s);
 void		*ft_calloc_gnl(size_t count, size_t size);
 void		*ft_bzero_gnl(void *s, size_t n);
 char		*get_next_line_bonus(int fd);
+char	*ft_strjoin_chetao(char **s1, char **s2);
 
 #endif

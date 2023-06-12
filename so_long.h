@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/11 01:37:18 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/06/12 00:38:38 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,10 @@ typedef struct	s_minilib
 	// … etc
 }				t_minilib;
 
-int		check_file(int argc, char **argv);
+char	**check_file(int argc, char **argv);
 void	return_error(char *message, char **map);
+char    **check_map(int argc, char **argv, int fd);
+
 
 
 #endif

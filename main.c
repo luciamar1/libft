@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/11 01:59:06 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/06/12 00:38:49 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int main(int argc, char **argv)
 {
+
+	char	**map;
     //t_minilib   program;
 
-	if(check_file(argc, argv) != 0)
-		return(1);
-
+	map = check_file(argc, argv);
+	
     //program.mlx_pointer = mlx_init();
     //program.window = mlx_new_window(program.mlx_pointer, 1980, 1080, "Hellow minilib =)");
     
