@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/12 21:01:08 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/06/14 15:13:58 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 int main(int argc, char **argv)
 {
 
-	char	**map;
+	char	**map_bi;
+	t_map	map;
     //t_minilib   program;
-	map = check_file(argc, argv);
+	map_bi = check_file(argc, argv, &map);
 	
 	//valgrind();
     //program.mlx_pointer = mlx_init();
@@ -30,10 +31,14 @@ int main(int argc, char **argv)
     
     //mlx_loop(program.mlx_pointer);
 
-	if(map == NULL)
+	if(map_bi == NULL)
 		return(1);
+	int coun = 0;
+
+	while(map_bi[coun])
+		printf("map == %s\n", map_bi[coun++]);
 	
-	ft_freecharmatrix(map);
+	ft_freecharmatrix(map_bi);
     return(0);
 }
 /*
