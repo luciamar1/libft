@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/20 12:21:08 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:34:37 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,22 +44,28 @@ typedef struct s_map_list
 	int	x;
 	int	y;
 	struct	s_map_list	*next;	
-}	t_map_list
-
-typedef struct	s_map
-{
-	char	E;
-	char	init;
-	char	object;
-	int		x;
-	int		y;
-}	t_map;
+}	t_map_list;
 
 typedef struct	s_vector
 {
 	int	x;
 	int	y;
 }				t_vector;
+
+
+typedef struct	s_map
+{
+	char	n_exits;
+	char	n_inits;
+	char	n_objects;
+	char	**map_copy;
+	t_vector	P;
+	t_vector	E;
+
+	int		x;
+	int		y;
+}	t_map;
+
 
 typedef struct	s_window {
 	void		*reference;
@@ -87,7 +93,7 @@ typedef struct	s_minilib
 char	**check_file(int argc, char **argv, t_map *map);
 void	return_error(char *message, char **map);
 char    **check_map(int argc, char **argv, int fd, t_map *map);
-
+void	validate_path(t_map *map, int y, int x);
 
 
 #endif

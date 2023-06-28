@@ -6,19 +6,31 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/20 12:23:51 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/06/28 16:46:44 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int validate_path(t_map map)
+void	validate_path(t_map *map, int y, int x)
 {
-    t_map_list  *path;
-    path = malloc(sizeof(t_map_list));
+	char	*p;
 
-
-    
+	p = &map->map_copy[y][x];
+	if (*p != '1')
+	{
+		if (*p == 'C')
+			map->n_objects--;
+		*p = '1';
+		if (map->map_copy[y][x + 1] != '1')
+			validate_path(map, y, x + 1);
+		if (map->map_copy[y][x - 1] != '1')
+			validate_path(map, y, x - 1);
+		if (map->map_copy[y - 1][x] != '1')
+			validate_path(map, y - 1, x);
+		if (map->map_copy[y + 1][x] != '1')
+			validate_path(map, y + 1, x);
+	}
 }
 
 void	return_error(char *message, char **map)
@@ -61,11 +73,11 @@ int	ft_strchr_so_long(char *s, t_map *map)
 	while (*s)
 	{
 		if (*s == 'E')
-            map->E = map->E + 1;
+            map->n_exits = map->n_exits + 1;
         if (*s == 'C')
-           map->object = map->object + 1;
+           map->n_objects = map->n_objects + 1;
         if (*s == 'P')
-           map->init = map->init + 1;
+           map->n_inits = map->n_inits + 1;
         if (*s != 'E'&& *s != 'C' && *s != 'P' && *s != '1' && *s != '0' && *s != '\n')
             return(1);
 		s++;
@@ -99,12 +111,12 @@ int create_map_str(int fd, t_map *map, char **map_str)
         if(ft_strchr_so_long(line_map, map) == 1)
         {
             free(line_map);
-            map->init = -1;
+            map->n_inits = -1;
             break;
         }
         *map_str = ft_strjoin_chetao(map_str, &line_map);
     }
-    if(map->E != 1 || map->init != 1 || map->object < 1)
+    if(map->n_exits != 1 || map->n_inits != 1 || map->n_objects < 1)
     {
         return_error("invalid map", map_str);
         return (1);
@@ -127,6 +139,8 @@ int validate_len(char **map)
         y ++;
     }
     if(map[y])
+        return(1);
+    if(y == ft_strlen(map[--y]))
         return(1);
     return(0);
 }
@@ -173,15 +187,41 @@ int validate_structure(char **map)
     return(0);
 }
 
+void position_p(char **map_bi, t_map *map)
+{
+    int y;
+    int x;
+
+    x = 0;
+    y = 0;
+    while(map_bi[y])
+    {
+        while(map_bi[y][x])
+        {
+
+            if(map_bi[y][x] == 'P')
+            {
+                map->P.y = y;
+                map->P.x = x;
+            }
+            x++;
+            
+        }
+        x = 0;
+        y ++;
+    }
+}
+
 char    **check_map(int argc, char **argv, int fd, t_map *map)
 {
     char    *map_str;
     char    **map_bi;
     char    *old_line_map;
+    int     counter = 0;
 
-    map->E = 0;
-    map->init = 0;
-    map->object = 0;
+    map->n_exits = 0;
+    map->n_inits = 0;
+    map->n_objects = 0;
     map_str = NULL;
     if(create_map_str(fd, map, &map_str) == 1)
         return(NULL);
@@ -192,5 +232,12 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
         ft_freecharmatrix(map_bi);
         return(NULL);
     }    
+    map->map_copy = map_bi;
+    position_p(map_bi, map);
+	while(map_bi[counter])
+	{
+		map->map_copy[counter] = ft_strdup(map_bi[counter]);
+		counter ++;
+	}
     return (map_bi);
 }
