@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/28 16:52:16 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:32:58 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int main(int argc, char **argv)
 
 	if(map_bi == NULL)
 		return(1);
-	validate_path(&map, map.P.y, map.P.x);
 	int coun = 0;
 
 	while(map_bi[coun])

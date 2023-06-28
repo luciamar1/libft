@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/28 16:46:44 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/06/28 17:37:43 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,5 +239,8 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
 		map->map_copy[counter] = ft_strdup(map_bi[counter]);
 		counter ++;
 	}
+    validate_path(map, map->P.y, map->P.x);
+    if(map->n_objects > 0)
+        return(NULL);
     return (map_bi);
 }
