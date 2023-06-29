@@ -85,5 +85,9 @@ void		*ft_calloc_gnl(size_t count, size_t size);
 void		*ft_bzero_gnl(void *s, size_t n);
 char		*get_next_line_bonus(int fd);
 char	*ft_strjoin_chetao(char **s1, char **s2);
+size_t	ft_strlen_array_bi(char **str);
+char	**ft_strdup_array_bi(char **str);
+
+
 
 #endif

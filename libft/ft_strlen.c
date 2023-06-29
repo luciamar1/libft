@@ -21,3 +21,14 @@ size_t	ft_strlen(const char *s)
 		l++;
 	return (l);
 }
+
+size_t	ft_strlen_array_bi(char **str)
+{
+	size_t	l;
+
+	l = 0;
+	while (str[l])
+		l++;
+	return (l);
+}
+

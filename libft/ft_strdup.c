@@ -30,3 +30,23 @@ char	*ft_strdup(const char *str)
 	*s = '\0';
 	return (s - sl);
 }
+
+char	**ft_strdup_array_bi(char **str)
+{
+	char	**copy;
+	int		counter;
+
+	counter = 0;
+	copy = malloc(sizeof(char *) * ft_strlen_array_bi(str));
+	while(str[counter])
+	{
+		copy[counter] = ft_strdup(str[counter]);
+		if(copy[counter] == NULL)
+		{
+			ft_freecharmatrix(copy);
+			return(NULL);
+		}
+		counter ++;
+    }
+	return(copy);
+}

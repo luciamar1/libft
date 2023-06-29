@@ -21,6 +21,8 @@ void	validate_path(t_map *map, int y, int x)
 	{
 		if (*p == 'C')
 			map->n_objects--;
+		if (*p == 'E')
+			map->n_exits--;
 		*p = '1';
 		if (map->map_copy[y][x + 1] != '1')
 			validate_path(map, y, x + 1);
@@ -30,6 +32,7 @@ void	validate_path(t_map *map, int y, int x)
 			validate_path(map, y - 1, x);
 		if (map->map_copy[y + 1][x] != '1')
 			validate_path(map, y + 1, x);
+
 	}
 }
 
@@ -49,22 +52,15 @@ char **check_file(int argc, char **argv, t_map *map)
     int fd;
     char **map_bi;
     if (argc != 2)
-    {
-        return_error("the number of arguments is wrong =(", NULL);
-        return (NULL);
-    }
+        return (return_error("the number of arguments is wrong =(", NULL), NULL);
     fd = open(argv[1], O_RDONLY);
     if (fd < 0)
-    {
-        return_error("the file can't be open =(", NULL);
-        return (NULL);
-    }
+        return (return_error("the file can't be open =(", NULL), NULL);
     if (ft_str_rev_n_cmp(argv[1], ".ber", 4) != 0)
-    {
-        return_error("the file is not .ber =(", NULL);
-        return (NULL);
-    }
+        return (return_error("the file is not .ber =(", NULL), NULL);
     map_bi = check_map(argc, argv, fd, map);
+    if(map_bi == NULL)
+        return (return_error("the map is wrong =(", NULL), NULL);
     return (map_bi);
 }
 
@@ -117,10 +113,7 @@ int create_map_str(int fd, t_map *map, char **map_str)
         *map_str = ft_strjoin_chetao(map_str, &line_map);
     }
     if(map->n_exits != 1 || map->n_inits != 1 || map->n_objects < 1)
-    {
-        return_error("invalid map", map_str);
-        return (1);
-    }
+        return ((return_error("invalid map", map_str)), 1);
     return (0);
 }
 
@@ -153,12 +146,9 @@ int validate_structure(char **map)
     int len;
     int l ;
 
-    y = 0;
-    x = 0;
-    len = 0;
+    x = ((y = 0), (len = 0),(l = 0), 0);
     if(validate_len(map) == 1)
         return(1);
-    l = len;
     while(map[len])
         len ++;
     len -= 1;
@@ -167,23 +157,16 @@ int validate_structure(char **map)
             return(1);  
     x = 0;
     while(map[len][x])
-    {
         if(map[len][x++] != '1')
             return(1);
-    }
     len ++;
     while(len --)
-    {
         if(map[y++][0] != '1')
             return(1);
-    }
-    y = 0;
-    x --;
+    y = ((x --), 0);
     while(l--)
-    {
         if(map[y++][x] != '1')
             return(1);
-    }
     return(0);
 }
 
@@ -232,18 +215,13 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
         ft_freecharmatrix(map_bi);
         return(NULL);
     }    
-    map->map_copy = map_bi;
     position_p(map_bi, map);
-    counter = 0;
-	while(map_bi[counter])
-	{
-		map->map_copy[counter] = ft_strdup(map_bi[counter]);
-        printf(" guatafac    ===    %s\n", map->map_copy[counter]);
-		counter ++;
-	}
+    map->map_copy = ft_strdup_array_bi(map_bi);
+    if(map->map_copy == NULL)
+        return(NULL);
+    map->map_real = map_bi;
     validate_path(map, map->P.y, map->P.x);
-
-    if(map->n_objects > 0)
+    if(map->n_objects > 0 || map->n_exits == 1)
         return(NULL);
     return (map_bi);
 }

@@ -59,6 +59,7 @@ typedef struct	s_map
 	char	n_inits;
 	char	n_objects;
 	char	**map_copy;
+	char	**map_real;
 	t_vector	P;
 	t_vector	E;
 
