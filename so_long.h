@@ -18,8 +18,8 @@
 # include <stdlib.h>
 # include <string.h>
 # include <errno.h>
-# include "mlx/mlx.h"
-# include "mlx/mlx_int.h"
+# include "mlx/minilibx-linux/mlx.h"
+# include "mlx/minilibx-linux/mlx_int.h"
 # include "libft/libft.h"
 
 #ifndef COLORS_H

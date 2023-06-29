@@ -4,6 +4,7 @@ SRC = ft_isalpha.c				\
 		ft_freeintmatrix.c			\
 		ft_isdigit.c				\
 		ft_isalnum.c				\
+		ft_print_array_bi.c			\
 		ft_isascii.c				\
 		ft_isprint.c				\
 		ft_strlen.c					\

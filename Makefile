@@ -1,10 +1,10 @@
 NAME		=	so_long
 CC			=	gcc
-FLAGS		=	-Wall -Wextra -Werror
-MLX			=	mlx/Makefile.gen
+FLAGS		=	-Wall -Wextra -Werror -Imlx
+MLX			=	mlx/minilibx-linux/Makefile.gen
 LFT			=	libft/libft.a
-INC			=	-I ./inc -I ./libft -I ./mlx
-LIB			=	-L ./libft -lft -L ./mlx -lmlx -lXext -lX11 -lm -lbsd
+INC			=	-I ./inc -I ./libft -I ./mlx/minilibx-linux
+LIB			=	-L ./libft -lft -L ./mlx/minilibx-linux -lmlx -lXext -lX11 -lm #-lbsd
 OBJ			=	$(patsubst src%, obj%, $(SRC:.c=.o))
 SRC			=	main.c checker.c
 				

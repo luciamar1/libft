@@ -234,12 +234,15 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
     }    
     map->map_copy = map_bi;
     position_p(map_bi, map);
+    counter = 0;
 	while(map_bi[counter])
 	{
 		map->map_copy[counter] = ft_strdup(map_bi[counter]);
+        printf(" guatafac    ===    %s\n", map->map_copy[counter]);
 		counter ++;
 	}
     validate_path(map, map->P.y, map->P.x);
+
     if(map->n_objects > 0)
         return(NULL);
     return (map_bi);
