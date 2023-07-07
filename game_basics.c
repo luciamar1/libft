@@ -10,49 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "so_long.h"
 
-#include "colors.h"
-#include "game.h"
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <string.h>
-# include <errno.h>
-# include "mlx/minilibx-linux/mlx.h"
-# include "mlx/minilibx-linux/mlx_int.h"
-# include "libft/libft.h"
-
-# define SIZE 32
-
-
-typedef struct	s_map
+int start_game(t_map *map, t_minilib *program)
 {
-	char	n_exits;
-	char	n_inits;
-	char	n_objects;
-	char	**map_copy;
-	char	**map_real;
-	t_vector	P;
-	t_vector	E;
-
-	int		columns;
-	int		rows;
-}	t_map;
-
-
-//   check functions
-
-char	**check_file(int argc, char **argv, t_map *map);
-void	return_error(char *message, char **map);
-char    **check_map(int argc, char **argv, int fd, t_map *map);
-void	validate_path(t_map *map, int y, int x, int *ob);
-
-// game_basic  functions
-int    start_game(t_map *map, t_minilib *program);
-
-
-
-
-#endif
+    program->mlx_pointer = mlx_init();
+	if(!program->mlx_pointer)
+		return(1);
+    program->window = mlx_new_window(program->mlx_pointer, map->columns * SIZE, map->rows * SIZE, "Hellow minilib =)");
+    if(!program->window)
+	    return(free(program->mlx_pointer), 1);
+   // mlx_loop(program->mlx_pointer);
+   ////                                                 CREAR UPDATE
+   mlx_loop_hook(program->mlx_ptr, ft_update())
+    return(0);
+    
+}

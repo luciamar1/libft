@@ -17,32 +17,45 @@
  	system("valgrind -s --leak-check=full ./so_long");
 
  }*/
+int on_destroy(t_minilib *data)
+{
+	mlx_destroy_window(data->mlx_pointer, data->window);
+	mlx_destroy_display(data->mlx_pointer);
+	free(data->mlx_pointer);
+	exit(0);
+	return (0);
+}
+
+
+int on_keypress(int keysym, t_minilib *data)
+{
+	(void)data;
+	printf("Pressed key: %d\\n", keysym);
+	return (0);
+}
+
 int main(int argc, char **argv)
 {
 
 	char	**map_bi;
 	t_map	map;
-    //t_minilib   program;
+    t_minilib   program;
 	map_bi = check_file(argc, argv, &map);
-		
-	
-	//valgrind();
-    //program.mlx_pointer = mlx_init();
-    //program.window = mlx_new_window(program.mlx_pointer, 1980, 1080, "Hellow minilib =)");
-    
-    //mlx_loop(program.mlx_pointer);
-
 	if(map_bi == NULL)
-		return(1);
-	int coun = 0;
-
-	while(map_bi[coun])
-		printf("map == %s\n", map_bi[coun++]);
+		return(1);	
+	ft_print_array_bi(map_bi);
+	start_game(&map, &program);
+	//valgrind();
+	//mlx_loop(program.mlx_pointer);
+	//mlx_hook(program.mlx_pointer, KeyRelease, KeyReleaseMask, &on_keypress, &program);
+	//mlx_hook(program.window, DestroyNotify, StructureNotifyMask, &on_destroy, &program);
+	//mlx_loop(program.mlx_pointer);
 	
 	ft_freecharmatrix(map_bi);
     return(0);
 }
 /*
+mlx_put_image_to_window
 int main()
 {
 	// ----------

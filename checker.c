@@ -12,26 +12,26 @@
 
 #include "so_long.h"
 
-void	validate_path(t_map *map, int y, int x)
+void	validate_path(t_map *map, int y, int x, int *ob)
 {
 	char	*p;
-
 	p = &map->map_copy[y][x];
 	if (*p != '1')
 	{
 		if (*p == 'C')
-			map->n_objects--;
+            *ob -= 1;
+			
 		if (*p == 'E')
 			map->n_exits--;
 		*p = '1';
 		if (map->map_copy[y][x + 1] != '1')
-			validate_path(map, y, x + 1);
+			validate_path(map, y, x + 1, ob);
 		if (map->map_copy[y][x - 1] != '1')
-			validate_path(map, y, x - 1);
+			validate_path(map, y, x - 1, ob);
 		if (map->map_copy[y - 1][x] != '1')
-			validate_path(map, y - 1, x);
+			validate_path(map, y - 1, x, ob);
 		if (map->map_copy[y + 1][x] != '1')
-			validate_path(map, y + 1, x);
+			validate_path(map, y + 1, x, ob);
 
 	}
 }
@@ -117,7 +117,7 @@ int create_map_str(int fd, t_map *map, char **map_str)
     return (0);
 }
 
-int validate_len(char **map)
+int validate_len(char **map, t_map *map_list)
 {
     int y;
     int x;
@@ -133,12 +133,15 @@ int validate_len(char **map)
     }
     if(map[y])
         return(1);
-    if(y == ft_strlen(map[--y]))
+    if(y == len)
         return(1);
+    map_list->rows = y;
+    map_list->columns = len;
+
     return(0);
 }
 
-int validate_structure(char **map)
+int validate_structure(char **map, t_map *map_list)
 {
     int y;
     int x;
@@ -147,7 +150,7 @@ int validate_structure(char **map)
     int l ;
 
     x = ((y = 0), (len = 0),(l = 0), 0);
-    if(validate_len(map) == 1)
+    if(validate_len(map, map_list) == 1)
         return(1);
     while(map[len])
         len ++;
@@ -201,6 +204,7 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
     char    **map_bi;
     char    *old_line_map;
     int     counter = 0;
+    int     ob;
 
     map->n_exits = 0;
     map->n_inits = 0;
@@ -209,7 +213,7 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
     if(create_map_str(fd, map, &map_str) == 1)
         return(NULL);
     map_bi = create_map(map_bi, &map_str);
-    if(validate_structure(map_bi) == 1)
+    if(validate_structure(map_bi, map) == 1)
     {
         write(1, "invalid map\n", 12);
         ft_freecharmatrix(map_bi);
@@ -220,8 +224,10 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
     if(map->map_copy == NULL)
         return(NULL);
     map->map_real = map_bi;
-    validate_path(map, map->P.y, map->P.x);
-    if(map->n_objects > 0 || map->n_exits == 1)
+    ob = map->n_objects;
+    validate_path(map, map->P.y, map->P.x, &ob);
+    ft_freecharmatrix(map->map_copy);
+    if(ob > 0 || map->n_exits == 1)
         return(NULL);
     return (map_bi);
 }

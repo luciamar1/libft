@@ -10,49 +10,40 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef GAME_H
 
-#include "colors.h"
-#include "game.h"
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdlib.h>
-# include <string.h>
-# include <errno.h>
-# include "mlx/minilibx-linux/mlx.h"
-# include "mlx/minilibx-linux/mlx_int.h"
-# include "libft/libft.h"
+# define GAME_H
 
-# define SIZE 32
-
-
-typedef struct	s_map
+typedef struct	s_vector
 {
-	char	n_exits;
-	char	n_inits;
-	char	n_objects;
-	char	**map_copy;
-	char	**map_real;
-	t_vector	P;
-	t_vector	E;
+	int	x;
+	int	y;
+}				t_vector;
 
-	int		columns;
-	int		rows;
-}	t_map;
+typedef struct	s_window {
+	void		*reference;
+	t_vector	size;
+}				t_window;
 
+typedef struct	s_image {
+	void		*reference;
+	t_vector	size;
+	char		*pixels;
+	int			bits_per_pixel;
+	int			line_size;
+	int			endian;
+}				t_image;
 
-//   check functions
-
-char	**check_file(int argc, char **argv, t_map *map);
-void	return_error(char *message, char **map);
-char    **check_map(int argc, char **argv, int fd, t_map *map);
-void	validate_path(t_map *map, int y, int x, int *ob);
-
-// game_basic  functions
-int    start_game(t_map *map, t_minilib *program);
-
-
+typedef struct	s_minilib
+ {
+	void	*mlx_pointer;
+	t_window	*window;
+    int			columns;
+    int			rows;
+	t_image		sprite;
+	t_vector	sprite_position;
+	// … etc
+}				t_minilib;
 
 
 #endif

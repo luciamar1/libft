@@ -6,7 +6,7 @@ LFT			=	libft/libft.a
 INC			=	-I ./inc -I ./libft -I ./mlx/minilibx-linux
 LIB			=	-L ./libft -lft -L ./mlx/minilibx-linux -lmlx -lXext -lX11 -lm #-lbsd
 OBJ			=	$(patsubst src%, obj%, $(SRC:.c=.o))
-SRC			=	main.c checker.c
+SRC			=	main.c checker.c game_basics.c
 				
 
 all:		$(MLX) $(LFT) obj $(NAME)
