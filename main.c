@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/28 17:32:58 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/18 21:17:28 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
  }*/
 int on_destroy(t_minilib *data)
 {
-	mlx_destroy_window(data->mlx_pointer, data->window);
-	mlx_destroy_display(data->mlx_pointer);
-	free(data->mlx_pointer);
+	// mlx_destroy_window(data->mlx_pointer, data->window);
+	// mlx_destroy_display(data->mlx_pointer);
+	// free(data->mlx_pointer);
 	exit(0);
 	return (0);
 }
@@ -41,16 +41,16 @@ int main(int argc, char **argv)
 	t_map	map;
     t_minilib   program;
 	map_bi = check_file(argc, argv, &map);
+	ft_print_array_bi(map_bi);
 	if(map_bi == NULL)
 		return(1);	
-	ft_print_array_bi(map_bi);
+	//printf("guaaaa\n");
 	start_game(&map, &program);
 	//valgrind();
 	//mlx_loop(program.mlx_pointer);
 	//mlx_hook(program.mlx_pointer, KeyRelease, KeyReleaseMask, &on_keypress, &program);
 	//mlx_hook(program.window, DestroyNotify, StructureNotifyMask, &on_destroy, &program);
 	//mlx_loop(program.mlx_pointer);
-	
 	ft_freecharmatrix(map_bi);
     return(0);
 }

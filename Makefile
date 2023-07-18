@@ -1,10 +1,11 @@
 NAME		=	so_long
 CC			=	gcc
-FLAGS		=	-Wall -Wextra -Werror -Imlx
+FLAGS		=	-Wall -Wextra -Werror # -Imlx
 MLX			=	mlx/minilibx-linux/Makefile.gen
 LFT			=	libft/libft.a
-INC			=	-I ./inc -I ./libft -I ./mlx/minilibx-linux
-LIB			=	-L ./libft -lft -L ./mlx/minilibx-linux -lmlx -lXext -lX11 -lm #-lbsd
+INC			=	-I ./inc -I ./libft #-I #./mlx/minilibx-linux
+# LIB			=	-L ./libft -lft -L ./mlx/minilibx-linux -lmlx -lXext -lX11 -lm
+LIB			=	-L ./libft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit #-lbsd
 OBJ			=	$(patsubst src%, obj%, $(SRC:.c=.o))
 SRC			=	main.c checker.c game_basics.c
 				

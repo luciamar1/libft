@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/28 17:37:43 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/18 21:14:01 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -226,7 +226,7 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
     map->map_real = map_bi;
     ob = map->n_objects;
     validate_path(map, map->P.y, map->P.x, &ob);
-    ft_freecharmatrix(map->map_copy);
+    //ft_freecharmatrix(map->map_copy);
     if(ob > 0 || map->n_exits == 1)
         return(NULL);
     return (map_bi);
