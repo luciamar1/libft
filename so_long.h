@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/18 21:41:38 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/20 20:55:46 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@
 # define SIZE 32
 # define SICE 1080
 
+typedef struct	s_position_to_paint
+{
+	int	x;
+	int	y;
+}	t_position_to_paint;
 
 typedef struct	s_map
 {
@@ -38,7 +43,7 @@ typedef struct	s_map
 	char	**map_real;
 	t_vector	P;
 	t_vector	E;
-
+	t_position_to_paint	position_to_paint;
 	int		columns;
 	int		rows;
 }	t_map;
