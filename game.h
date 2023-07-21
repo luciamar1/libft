@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/28 16:34:37 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:28:06 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,13 @@ typedef struct	s_window {
 	t_vector	size;
 }				t_window;
 
-typedef struct	s_image {
-	void		*reference;
-	t_vector	size;
-	char		*pixels;
-	int			bits_per_pixel;
-	int			line_size;
-	int			endian;
-}				t_image;
+
 
 typedef struct	s_minilib
  {
 	void	*mlx_pointer;
 	t_window	*window;
-    int			columns;
-    int			rows;
-	t_image		sprite;
+	t_vector	P;
 	t_vector	sprite_position;
 	// … etc
 }				t_minilib;

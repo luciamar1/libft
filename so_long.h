@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/20 20:55:46 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:43:54 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include "libft/libft.h"
 
 # define SIZE 32
-# define SICE 1080
 
 typedef struct	s_position_to_paint
 {
@@ -41,6 +40,7 @@ typedef struct	s_map
 	char	n_objects;
 	char	**map_copy;
 	char	**map_real;
+	t_minilib	*program;
 	t_vector	P;
 	t_vector	E;
 	t_position_to_paint	position_to_paint;
@@ -51,13 +51,13 @@ typedef struct	s_map
 
 //   check functions
 
-char	**check_file(int argc, char **argv, t_map *map);
+char	**checker(int argc, char **argv, t_map *map);
 void	return_error(char *message, char **map);
 char    **check_map(int argc, char **argv, int fd, t_map *map);
 void	validate_path(t_map *map, int y, int x, int *ob);
 
 // game_basic  functions
-int    start_game(t_map *map, t_minilib *program);
+int    start_game(t_map *map);
 
 
 

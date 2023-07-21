@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/18 21:14:01 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/21 23:47:10 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	return_error(char *message, char **map)
     write(1, "\n", 1);
 }
 
-char **check_file(int argc, char **argv, t_map *map)
+char **checker(int argc, char **argv, t_map *map)
 {
     int fd;
     char **map_bi;
@@ -74,7 +74,7 @@ int	ft_strchr_so_long(char *s, t_map *map)
            map->n_objects = map->n_objects + 1;
         if (*s == 'P')
            map->n_inits = map->n_inits + 1;
-        if (*s != 'E'&& *s != 'C' && *s != 'P' && *s != '1' && *s != '0' && *s != '\n')
+        if (*s != 'E' && *s != 'C' && *s != 'P' && *s != '1' && *s != '0' && *s != '\n')
             return(1);
 		s++;
 	}
@@ -210,6 +210,7 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
     map->n_inits = 0;
     map->n_objects = 0;
     map_str = NULL;
+    map->program = malloc(sizeof(t_minilib));
     if(create_map_str(fd, map, &map_str) == 1)
         return(NULL);
     map_bi = create_map(map_bi, &map_str);

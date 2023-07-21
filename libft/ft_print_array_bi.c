@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_print_array_bi.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucia-ma <lucia-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 02:22:47 by lucia-ma          #+#    #+#             */
-/*   Updated: 2022/09/18 21:02:53 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/21 22:50:53 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void    ft_print_array_bi(char **array)
 {
-    while(*array)
+    int y;
+    
+    y = 0;
+    while(array[y])
     {
-       printf("array  ==  %s\n", *array);
-        array ++;
+        printf("array  ==  %s\n", array[y]);
+        y ++;
     }
 }
