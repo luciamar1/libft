@@ -95,6 +95,8 @@ void    cerrar(t_map *map, int win)
     else
         write(1, "ooooyyyyeeee no me cierres =(\n", 30);
     mlx_destroy_window(map->program->mlx_pointer,map->program->window);
+    free(map->program->mlx_pointer);
+    ft_freecharmatrix(map->map_real);
     exit(0);
 }
 
@@ -147,10 +149,10 @@ int start_game(t_map *map)
     size = SIZE;
     map->program->mlx_pointer = mlx_init();
 	if(!map->program->mlx_pointer)
-		return(1);
+		return(return_error("mlx_init fail\n", NULL, map->map_real), 1);
     map->program->window = mlx_new_window(map->program->mlx_pointer, map->columns * SIZE, map->rows * SIZE, "Hellow minilib =)");
     if(!map->program->window)
-	    return(free(map->program->mlx_pointer), 1);
+	    return(((return_error("mlx_init fail\n", NULL, map->map_real)), (free(map->program->mlx_pointer))), 1);
     while(map->map_real[map->position_to_paint.y])
     {
         while(map->map_real[map->position_to_paint.y][map->position_to_paint.x])
