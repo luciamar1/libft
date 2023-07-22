@@ -20,9 +20,14 @@
 # include <stdlib.h>
 # include <string.h>
 # include <errno.h>
-// # include "mlx/minilibx-linux/mlx.h"
-// # include "mlx/minilibx-linux/mlx_int.h"
-#include "./mlx/mlx.h"
+//////////LINUX//////////////
+# include "mlx/minilibx-linux/mlx.h"
+# include "mlx/minilibx-linux/mlx_int.h"
+//////////LINUX//////////////
+
+////////// MAC////////////
+//#include "./mlx/mlx.h"
+//////////MAC////////////
 # include "libft/libft.h"
 
 # define SIZE 32
@@ -51,8 +56,8 @@ typedef struct	s_map
 
 //   check functions
 
-char	**checker(int argc, char **argv, t_map *map);
-void	return_error(char *message, char **map);
+int		checker(int argc, char **argv, t_map *map);
+void	return_error(char *message, char *map_str, char **map_bi);
 char    **check_map(int argc, char **argv, int fd, t_map *map);
 void	validate_path(t_map *map, int y, int x, int *ob);
 

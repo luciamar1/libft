@@ -12,11 +12,21 @@
 
 #include "so_long.h"
 
-/* void	valgrind(void)
+ void	fre(void)
+ {
+ 	system("leaks -q push_swap");
+ }
+
+void	valgrind(void)
  {
  	system("valgrind -s --leak-check=full ./so_long");
 
- }*/
+ }
+void	leaks(void)
+{
+	system("leaks -q pipex");
+}
+
 int on_destroy(t_minilib *data)
 {
 	// mlx_destroy_window(data->mlx_pointer, data->window);
@@ -37,11 +47,13 @@ int on_keypress(int keysym, t_minilib *data)
 int main(int argc, char **argv)
 {
 
-	char	**map_bi;
+	int	check;
 	t_map	map;
-	map_bi = checker(argc, argv, &map);
-	if (map_bi == NULL)
+	check = checker(argc, argv, &map);
+	if (check == 1)
 		return(1);	
+	valgrind();
 	start_game(&map);
+
     return(0);
 }

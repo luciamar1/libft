@@ -36,32 +36,33 @@ void	validate_path(t_map *map, int y, int x, int *ob)
 	}
 }
 
-void	return_error(char *message, char **map)
+void	return_error(char *message, char *map_str, char **map_bi)
 {
-	if (map)
-    {
-		free(*map);
-    }
+	if (map_str)
+		free(map_str);
+    if (map_bi)
+        ft_freecharmatrix(map_bi);
     while(*message)
         write(1, message++, 1);
     write(1, "\n", 1);
 }
 
-char **checker(int argc, char **argv, t_map *map)
+int checker(int argc, char **argv, t_map *map)
 {
     int fd;
     char **map_bi;
     if (argc != 2)
-        return (return_error("the number of arguments is wrong =(", NULL), NULL);
+        return (return_error("the number of arguments is wrong =(", NULL, NULL), 1);
     fd = open(argv[1], O_RDONLY);
     if (fd < 0)
-        return (return_error("the file can't be open =(", NULL), NULL);
+        return (return_error("the file can't be open =(", NULL, NULL), 1);
     if (ft_str_rev_n_cmp(argv[1], ".ber", 4) != 0)
-        return (return_error("the file is not .ber =(", NULL), NULL);
+        return (return_error("the file is not .ber =(", NULL, NULL), 1);
     map_bi = check_map(argc, argv, fd, map);
+     printf("holi?\n");
     if(map_bi == NULL)
-        return (return_error("the map is wrong =(", NULL), NULL);
-    return (map_bi);
+        return (return_error("the map is wrong =(", NULL, NULL), 1);
+    return (0);
 }
 
 int	ft_strchr_so_long(char *s, t_map *map)
@@ -86,7 +87,7 @@ char **create_map(char **map, char **map_str)
     map = ft_split(*map_str, '\n');
     if(map == NULL)
     {
-        return_error("split fail", map_str);
+        return_error("split fail", *map_str, NULL);
         return(NULL);
     }  
     free(*map_str);
@@ -111,9 +112,10 @@ int create_map_str(int fd, t_map *map, char **map_str)
             break;
         }
         *map_str = ft_strjoin_chetao(map_str, &line_map);
+        printf("while map_str == %s\n", *map_str);
     }
     if(map->n_exits != 1 || map->n_inits != 1 || map->n_objects < 1)
-        return ((return_error("invalid map", map_str)), 1);
+        return ((return_error("invalid map", *map_str, NULL)), 1);
     return (0);
 }
 
@@ -213,6 +215,7 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
     map->program = malloc(sizeof(t_minilib));
     if(create_map_str(fd, map, &map_str) == 1)
         return(NULL);
+    printf("map_str == %s\n", map_str);
     map_bi = create_map(map_bi, &map_str);
     if(validate_structure(map_bi, map) == 1)
     {
@@ -227,7 +230,7 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
     map->map_real = map_bi;
     ob = map->n_objects;
     validate_path(map, map->P.y, map->P.x, &ob);
-    //ft_freecharmatrix(map->map_copy);
+    ft_freecharmatrix(map->map_copy);
     if(ob > 0 || map->n_exits == 1)
         return(NULL);
     return (map_bi);
