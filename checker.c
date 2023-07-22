@@ -59,7 +59,6 @@ int checker(int argc, char **argv, t_map *map)
     if (ft_str_rev_n_cmp(argv[1], ".ber", 4) != 0)
         return (return_error("the file is not .ber =(", NULL, NULL), 1);
     map_bi = check_map(argc, argv, fd, map);
-     printf("holi?\n");
     if(map_bi == NULL)
         return (return_error("the map is wrong =(", NULL, NULL), 1);
     return (0);
@@ -90,7 +89,8 @@ char **create_map(char **map, char **map_str)
         return_error("split fail", *map_str, NULL);
         return(NULL);
     }  
-    free(*map_str);
+    else
+        free(*map_str);
     return(map);
 }
 
@@ -215,19 +215,15 @@ char    **check_map(int argc, char **argv, int fd, t_map *map)
     map->program = malloc(sizeof(t_minilib));
     if(create_map_str(fd, map, &map_str) == 1)
         return(NULL);
-    printf("map_str == %s\n", map_str);
     map_bi = create_map(map_bi, &map_str);
     if(validate_structure(map_bi, map) == 1)
-    {
-        write(1, "invalid map\n", 12);
-        ft_freecharmatrix(map_bi);
-        return(NULL);
-    }    
+        return((return_error("invalid map\n", NULL, map_bi)), NULL);
     position_p(map_bi, map);
     map->map_copy = ft_strdup_array_bi(map_bi);
     if(map->map_copy == NULL)
-        return(NULL);
+        return((return_error("creation of map_copy fail\n", NULL, map_bi)), NULL);
     map->map_real = map_bi;
+    ///por q ob
     ob = map->n_objects;
     validate_path(map, map->P.y, map->P.x, &ob);
     ft_freecharmatrix(map->map_copy);

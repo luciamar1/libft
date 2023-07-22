@@ -40,9 +40,9 @@ typedef struct	s_position_to_paint
 
 typedef struct	s_map
 {
-	char	n_exits;
-	char	n_inits;
-	char	n_objects;
+	int	n_exits;
+	int	n_inits;
+	int	n_objects;
 	char	**map_copy;
 	char	**map_real;
 	t_minilib	*program;
