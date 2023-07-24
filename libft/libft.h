@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 19:51:03 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/12 01:20:40 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:36:00 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <strings.h> 
+# include <stdarg.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -28,6 +29,13 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int	ft_putnbr(int n);
+int	ft_putchar(char c);
+int	ft_putstr(const char *s);
+int	ft_putnbr_base(int nb, char *base);
+int	ft_putptr_base(unsigned long long nb, char *base, char p);
+int	ft_printf(char const *s, ...);
+int	wall_happen(va_list *args, char happen);
 void		ft_print_array_bi(char **array);
 int			ft_str_rev_n_cmp(const char *s1, const char *s2, size_t n);
 void		*protect_malloc(size_t n);

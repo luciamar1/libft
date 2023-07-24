@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   game_basics.c                                      :+:      :+:    :+:   */
+/*   game_basics_linux.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/22 00:32:29 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/24 14:46:28 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void    cerrar(t_map *map, int win)
     else
         write(1, "ooooyyyyeeee no me cierres =(\n", 30);
     mlx_destroy_window(map->program->mlx_pointer,map->program->window);
+    mlx_destroy_display(data->mlx_pointer);
     free(map->program->mlx_pointer);
     ft_freecharmatrix(map->map_real);
     exit(0);

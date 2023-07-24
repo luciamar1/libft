@@ -50,6 +50,9 @@ SRC = ft_isalpha.c				\
 		ft_lstmap_bonus.c			\
 		get_next_line.c				\
 		get_next_line_utils.c		\
+		ft_printf.c					\
+		putnbr_base.c				\
+		utils.c						\
 
 
 CFLAGS = -Wall -Wextra -Werror -g3
