@@ -56,7 +56,7 @@ CFLAGS		=	-Wall -Wextra -Werror # -Imlx
 MLX			=	minilibx_opengl_20191021/minilibx-linux/Makefile.gen
 LFT			=	libft/libft.a
 INC			=	-I ./inc -I ./libft #-I ./minilibx_opengl_20191021
-LIB			=	-L ./libft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit  # -g3 -fsanitize=address#-lbsd 
+LIB			=	-L ./libft -lft -lmlx -framework OpenGL -framework AppKit  # -g3 -fsanitize=address#-lbsd 
 SRC			=	main.c checker.c check_map.c utils.c game_basics_mac.c move_game.c
 OBJ			=	$(SRC:.c=.o)
 				
