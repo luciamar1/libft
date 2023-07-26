@@ -53,7 +53,7 @@
 NAME		=	so_long
 CC			=	gcc
 FLAGS		=	-Wall -Wextra -Werror # -Imlx
-MLX			=	mlx/minilibx-linux/Makefile.gen
+MLX			=	minilibx_opengl_20191021/minilibx-linux/Makefile.gen
 LFT			=	libft/libft.a
 INC			=	-I ./inc -I ./libft #-I #./mlx/minilibx-linux
 LIB			=	-L ./libft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit  # -g3 -fsanitize=address#-lbsd 
@@ -68,7 +68,7 @@ $(NAME):	$(OBJ)
 
 $(MLX):
 			@echo " [ .. ] | Compiling minilibx.."
-			@make -s -C mlx
+			@make -s -C minilibx_opengl_20191021
 			@echo " [ OK ] | Minilibx ready!"
 
 $(LFT):		

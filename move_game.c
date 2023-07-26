@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/24 17:51:33 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/26 17:44:43 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,28 @@ int	key_hook(int key, t_map *map)
 	if (map->n_objects == 0)
 		sticker(map, "./sprites/puerta2.xpm", \
 			map->program.e.x, map->program.e.y);
+	if (map->map_real[pary][parx] == 'E' && map->n_objects == 0)
+		close_game(map, 0);
+	// printf("gestion == %c\n", map->map_real[py])
 	if (key == 53)
 		close_game(map, 1);
 	else if ((key == 0 || key == 1 || key == 2 || key == 13) \
-		&& map->map_real[pary][parx] != '1' && map->map_real[pary][parx] != 'E')
+		&& map->map_real[pary][parx] != '1' )
 		move_al_uranio(key, map, vector);
-	if (map->map_real[pary][parx] == 'E' && map->n_objects == 0)
-		close_game(map, 0);
+	// else if((map->map_real[pary][parx] == 'E') || (map->map_real[pary -1][parx-1] == 'E'))
+	// {
+	// 	printf("hola\n");
+	// 	sticker(map, "./sprites/Pink_Monster_Run_6.xpm", \
+	// 	map->program.p.x + vector[0], map->program.p.y + vector[1]);
+	// 	if(map->map_real[pary -1][parx-1] == 'E')
+	// 	{
+	// 		sticker(map, "./puerta1.xpm", \
+	// 			map->program.p.x + vector[0], map->program.p.y + vector[1]);
+			
+	// 	}
+	// 	map->program.p.x += vector[0];
+	// 	map->program.p.y += vector[1];
+	// }
 	return (0);
 }
 
@@ -69,9 +84,23 @@ void	move_al_uranio(int key, t_map *map, int *vector)
 	static int	counter = 0;
 
 	size = SIZE;
-	sticker(map, "./sprites/Pink_Monster_Run_6.xpm", \
-		map->program.p.x + vector[0], map->program.p.y + vector[1]);
-	sticker(map, "./sprites/fondo.xpm", map->program.p.x, map->program.p.y);
+	// printf("array ahora %c\n", map->map_real[map->program.p.x][map->program.p.y]);
+	// printf("array if %c\n", map->map_real[map->program.p.x - vector[0]][map->program.p.y - vector[1]]);
+	
+	//printf("jodeeerrr %d    %d\n", vector[0], vector[1]);
+	if (map->map_real[map->program.p.y][map->program.p.x ] == 'E')
+	{
+		sticker(map, "./sprites/Pink_Monster_Run_6.xpm", \
+			map->program.p.x + vector[0], map->program.p.y + vector[1]);
+		sticker(map, "./sprites/puerta1.xpm", map->program.p.x, map->program.p.y);
+	}
+	else
+	{
+		sticker(map, "./sprites/Pink_Monster_Run_6.xpm", \
+			map->program.p.x + vector[0], map->program.p.y + vector[1]);
+		sticker(map, "./sprites/fondo.xpm", map->program.p.x, map->program.p.y);
+
+	}
 	map->program.p.x += vector[0];
 	map->program.p.y += vector[1];
 }

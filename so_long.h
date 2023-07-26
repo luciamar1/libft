@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/24 18:24:02 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:22:45 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 //////////LINUX//////////////
 
 ////////// MAC////////////
-# include "./mlx/mlx.h"
+# include "./minilibx_opengl_20191021/mlx.h"
 //////////MAC////////////
 # include "libft/libft.h"
 
