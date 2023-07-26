@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/26 15:22:45 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:01:06 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_map
 int		ft_strchr_so_long(char *s, t_map *map);
 int		checker(int argc, char **argv, t_map *map);
 void	return_error(char *message, char *map_str, char **map_bi);
-char	**check_map(int argc, char **argv, int fd, t_map *map);
+char	**check_map(int fd, t_map *map);
 void	validate_path(t_map *map, int y, int x, int *ob);
 char	**create_map(char **map, char **map_str);
 int		create_map_str(int fd, t_map *map, char **map_str);
@@ -66,7 +66,7 @@ int		validate_structure(char **map, t_map *map_list);
 
 // game_basic  functions
 int		start_game(t_map *map);
-void	move_al_uranio(int key, t_map *map, int *vector);
+void	move_al_uranio(t_map *map, int *vector);
 int		key_hook(int key, t_map *map);
 void	close_game(t_map *map, int win);
 

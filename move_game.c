@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/26 18:02:33 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/26 19:00:46 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	vector_mov(int *x, int *y, int key)
 
 int	key_hook(int key, t_map *map)
 {
-	static int	counter = 0;
 	int			vector[2];
 	int			parx;
 	int			pary;
@@ -54,20 +53,19 @@ int	key_hook(int key, t_map *map)
 			map->program.e.x, map->program.e.y);
 	if (map->map_real[pary][parx] == 'E' && map->n_objects == 0)
 	{
-		move_al_uranio(key, map, vector);
+		move_al_uranio(map, vector);
 		close_game(map, 0);
 	}
 	if (key == 53)
 		close_game(map, 1);
 	else if ((key == 0 || key == 1 || key == 2 || key == 13) \
 		&& map->map_real[pary][parx] != '1' )
-		move_al_uranio(key, map, vector);
+		move_al_uranio(map, vector);
 	return (0);
 }
 
-void	move_al_uranio(int key, t_map *map, int *vector)
+void	move_al_uranio(t_map *map, int *vector)
 {
-	int			*img;
 	int			size;
 	static int	counter = 1;
 

@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/24 18:08:28 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:30:09 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	validate_len(char **map, t_map *map_list)
 	y = 0;
 	x = 0;
 	len = ft_strlen(map[y++]);
-	while (map[y] && ft_strlen(map[y]) == len)
+	while (map[y] && ft_strlen(map[y]) == (size_t)len)
 	{
 		y ++;
 	}

@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:48:04 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/24 18:09:55 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:28:43 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	checker(int argc, char **argv, t_map *map)
 		return (return_error("the file can't be open =(", NULL, NULL), 1);
 	if (ft_str_rev_n_cmp(argv[1], ".ber", 4) != 0)
 		return (return_error("the file is not .ber =(", NULL, NULL), 1);
-	map_bi = check_map(argc, argv, fd, map);
+	map_bi = check_map(fd, map);
 	if (map_bi == NULL)
 		return (return_error("the map is wrong =(", NULL, NULL), 1);
 	return (0);
@@ -95,15 +95,15 @@ void	position_p(char **map_bi, t_map *map)
 	}
 }
 
-char	**check_map(int argc, char **argv, int fd, t_map *map)
+char	**check_map(int fd, t_map *map)
 {
 	char	*map_str;
 	char	**map_bi;
-	char	*old_line_map;
 	int		ob;
 
 	map->n_objects = ((map->n_exits = 0), (map->n_inits = 0), 0);
 	map_str = NULL;
+	map_bi = NULL;
 	if (create_map_str(fd, map, &map_str) == 1)
 		return (NULL);
 	map_bi = create_map(map_bi, &map_str);
