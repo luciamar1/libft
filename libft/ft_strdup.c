@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucia-ma <lucia-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 02:23:30 by lucia-ma          #+#    #+#             */
-/*   Updated: 2022/08/12 02:28:31 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:16:39 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,15 @@ char	**ft_strdup_array_bi(char **str)
 
 	counter = 0;
 	copy = malloc(sizeof(char *) * ft_strlen_array_bi(str));
-	while(str[counter])
+	while (str[counter])
 	{
 		copy[counter] = ft_strdup(str[counter]);
-		if(copy[counter] == NULL)
+		if (copy[counter] == NULL)
 		{
 			ft_freecharmatrix(copy);
-			return(NULL);
+			return (NULL);
 		}
 		counter ++;
-    }
-	return(copy);
+	}
+	return (copy);
 }

@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/24 18:10:53 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:09:06 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	put_image2(t_map *map, int x, int y, void *img)
 	mlx_destroy_image(map->program.mlx_pointer, img);
 }
 
-void	put_image(t_map *map, int x, int y)
+int	put_image(t_map *map, int x, int y)
 {
 	void	*img;
 	int		size;
@@ -50,18 +50,20 @@ void	put_image(t_map *map, int x, int y)
 			"./sprites/puerta1.xpm", &size, &size);
 	}
 	put_image2(map, x, y, img);
+	return (0);
 }
 
-void	close_game(t_map *map, int win)
+int	close_game(t_map *map)
 {
-	if (win == 0)
+	if (map->n_objects == 0)
 		write(1, "\n\nYUHUUUUUUU SOY LIBREEEE!!!\n\n      GRACIAS =)\n\n", 49);
 	else
-		write(1, "ooooyyyyeeee no me cierres =(\n", 30);
+		write(1, "\n\n        OOOOOOOYEEEEEE NO ME CIERREEEESSS =(\n\n\n\n", 50);
 	mlx_destroy_window(map->program.mlx_pointer, map->program.window);
 	free(map->program.mlx_pointer);
 	ft_freecharmatrix(map->map_real);
 	exit(0);
+	return (1);
 }
 
 /* ************************************************************************** */
@@ -87,7 +89,7 @@ int	start_game(t_map *map)
 		}
 		map->pos_to_paint.x = ((map->pos_to_paint.y++), 0);
 	}
-	mlx_hook(map->program.window, 17, 1L << 17, key_hook, map);
+	mlx_hook(map->program.window, 17, 1L << 17, close_game, map);
 	mlx_key_hook(map->program.window, key_hook, map);
 	mlx_loop(map->program.mlx_pointer);
 	return (0);

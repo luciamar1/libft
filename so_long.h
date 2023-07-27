@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/26 19:01:06 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/27 15:42:41 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,6 @@ int		validate_structure(char **map, t_map *map_list);
 int		start_game(t_map *map);
 void	move_al_uranio(t_map *map, int *vector);
 int		key_hook(int key, t_map *map);
-void	close_game(t_map *map, int win);
+int		close_game(t_map *map);
 
 #endif

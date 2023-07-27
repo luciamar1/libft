@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 02:23:17 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/06/12 18:11:15 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:16:12 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,4 +92,3 @@ char	**ft_split(char const *s, char c)
 	}
 	return (m - i);
 }
-

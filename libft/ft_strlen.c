@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucia-ma <lucia-ma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 02:23:50 by lucia-ma          #+#    #+#             */
-/*   Updated: 2022/08/12 02:23:50 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:18:59 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,3 @@ size_t	ft_strlen_array_bi(char **str)
 		l++;
 	return (l);
 }
-

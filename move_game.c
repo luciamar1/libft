@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 12:47:49 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/26 19:00:46 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:22:57 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,10 @@ int	key_hook(int key, t_map *map)
 	if (map->map_real[pary][parx] == 'E' && map->n_objects == 0)
 	{
 		move_al_uranio(map, vector);
-		close_game(map, 0);
+		close_game(map);
 	}
 	if (key == 53)
-		close_game(map, 1);
+		close_game(map);
 	else if ((key == 0 || key == 1 || key == 2 || key == 13) \
 		&& map->map_real[pary][parx] != '1' )
 		move_al_uranio(map, vector);
