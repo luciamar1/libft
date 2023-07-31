@@ -6,7 +6,7 @@
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 19:51:03 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/02/27 16:58:27 by lucia-ma         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:20:30 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <strings.h> 
+# include <stdarg.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1
@@ -28,10 +29,19 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
+int			ft_putnbr(int n);
+int			ft_putchar(char c);
+int			ft_putstr(const char *s);
+int			ft_putnbr_base(int nb, char *base);
+int			ft_putptr_base(unsigned long long nb, char *base, char p);
+int			ft_printf(char const *s, ...);
+int			wall_happen(va_list *args, char happen);
+void		ft_print_array_bi(char **array);
 int			ft_str_rev_n_cmp(const char *s1, const char *s2, size_t n);
+void		*protect_malloc(size_t n);
 void		ft_freecharmatrix(char **matrix);
 void		ft_freeintmatrix(int **matrix, int sec_dimension);
-int			ft_atoi(const char *str);
+int			ft_atoi_chetao(const char *str, int *error);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);
 int			ft_isalnum(int c);
@@ -82,5 +92,8 @@ size_t		ft_strlen_gnl(const char *s);
 void		*ft_calloc_gnl(size_t count, size_t size);
 void		*ft_bzero_gnl(void *s, size_t n);
 char		*get_next_line_bonus(int fd);
+char		*ft_strjoin_chetao(char **s1, char **s2);
+size_t		ft_strlen_array_bi(char **str);
+char		**ft_strdup_array_bi(char **str);
 
 #endif

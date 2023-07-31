@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_print_array_bi.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucia-ma <lucia-ma@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/12 02:23:50 by lucia-ma          #+#    #+#             */
-/*   Updated: 2023/07/27 16:18:59 by lucia-ma         ###   ########.fr       */
+/*   Created: 2022/08/12 02:22:47 by lucia-ma          #+#    #+#             */
+/*   Updated: 2023/07/27 16:17:37 by lucia-ma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+void	ft_print_array_bi(char **array)
 {
-	size_t	l;
+	int	y;
 
-	l = 0;
-	while (s[l])
-		l++;
-	return (l);
-}
-
-size_t	ft_strlen_array_bi(char **str)
-{
-	size_t	l;
-
-	l = 0;
-	while (str[l])
-		l++;
-	return (l);
+	y = 0;
+	while (array[y])
+	{
+		printf("array  ==  %s\n", array[y]);
+		y ++;
+	}
 }

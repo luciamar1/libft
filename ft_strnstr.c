@@ -17,11 +17,9 @@
 char	*ft_strnstr(const char *s, const char *f, size_t n)
 {
 	size_t	lf;
-	size_t	i;
 
 	if (!s && !n)
 		return (NULL);
-	i = 0;
 	lf = ft_strlen(f);
 	if (!lf)
 		return ((char *)s);
